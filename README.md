@@ -18,13 +18,13 @@ Though you can [go here](https://modernmystic.herokuapp.com/) to see a working v
 
 ### Doing Readings
 Visitors can select a type of tarot reading from the home page. Those gorgeous purple circles are a little sass magic (`background-image: radial-gradient($gradient-lt 0%, $gradient-dk 60%);`)
-![Alt text](/app/assets/images/screenshots/home.png?raw=true "Home Page")
+![Alt text](/screenshots/home.png?raw=true "Home Page")
 
 But more importantly, when clicked, they take you to a reading show page where you can click on the cards, one at a time, to get a reading. When you first arrive on the reading page, all cards are displayed face-down.
-![Alt text](/app/assets/images/screenshots/reading_01.png?raw=true "New Reading")
+![Alt text](/screenshots/reading_01.png?raw=true "New Reading")
 
 When you click on a card, a modal opens with the card face and an intrepretation of this card in this particular position. In tarot, both the card and the position the card is in carry meanings. You read the two of them together to derive the full meaning.
-![Alt text](/app/assets/images/screenshots/reading_02.png?raw=true "Seeing a card's interpretation during a reading")
+![Alt text](/screenshots/reading_02.png?raw=true "Seeing a card's interpretation during a reading")
 
 The modal does that for you by zipping the `card` data into the `reading_positions` data and displaying them both together.
 
@@ -42,17 +42,17 @@ end
 ```
 
 As you dismiss each modal, you see the cards you've already read displayed face up, with the remaining cards displayed face down. As you can see, some of those cards are right-side up and other are upside down -- and it's not just the `css`, there's "upside down" data too. We'll get to the significance of that in a moment.
-![Alt text](/app/assets/images/screenshots/reading_03.png?raw=true "Seeing read cards as face-up and unread cards as face-down")
+![Alt text](/screenshots/reading_03.png?raw=true "Seeing read cards as face-up and unread cards as face-down")
 
 Aside from doing readings, visitors can use this app as a tarot knowledge base where they can look up the meanings for each card from the card index page.
-![Alt text](/app/assets/images/screenshots/card_details.png?raw=true "Sample card from the database with all card data details")
+![Alt text](/screenshots/card_details.png?raw=true "Sample card from the database with all card data details")
 
 ### The Admin Section
 As a person who manages the content of this site, I get pretty excited about the less-shiny features like... _the Admin section_. Here, I can see a list of readings, including their `published?` status:
-![Alt text](/app/assets/images/screenshots/admin_reading_index.png?raw=true "Readings index page")
+![Alt text](/screenshots/admin_reading_index.png?raw=true "Readings index page")
 
 As you've been seeing, in tarot, a reading has many positions in which to place a card, and each of those positions carries its own meaning (or context) for when you place the card in it. Some readings have only 3 cards, some have 10. So a `reading` `has_many :reading_positions`. Here you see the reading show page with each reading's name and the questions it provides the user to invoke insight:
-![Alt text](/app/assets/images/screenshots/admin_reading_show.png?raw=true "Reading show page with all reading positions")
+![Alt text](/screenshots/admin_reading_show.png?raw=true "Reading show page with all reading positions")
 
 ^See that nifty `+ Add Position` button? It uses good old `remote: true` to pop open a form on the bottom of the page so I can easily add a new question.
 
@@ -83,7 +83,7 @@ class ReadingPosition < ApplicationRecord
   ...
 ```
 
-![Alt text](/app/assets/images/screenshots/admin_reading_show_form.png?raw=true "Reading show page with expanded new position form")
+![Alt text](/screenshots/admin_reading_show_form.png?raw=true "Reading show page with expanded new position form")
 
 Since a reading can have so many positions, I wanted to make sure editing a `reading` _and_ its `positions` could be done in 1 step. That means implementing `accepts_nested_attributes_for`, which makes the form super user-friendly.
 
@@ -101,16 +101,16 @@ class Reading < ApplicationRecord
   ...
 ```
 
-![Alt text](/app/assets/images/screenshots/admin_reading_form.png?raw=true "Nested form for readings with reading_positions")
+![Alt text](/screenshots/admin_reading_form.png?raw=true "Nested form for readings with reading_positions")
 
 ## App Architecture
 This app's architecture is straightforward, with `Card`s, `Reading`s, and `User`s independent of each other's related tables. Thanks [rails-erd](https://github.com/voormedia/rails-erd) for that sweet ERD gem.
 
-![Alt text](/app/assets/images/screenshots/erd.png?raw=true "Schema ERD")
+![Alt text](/screenshots/erd.png?raw=true "Schema ERD")
 
 ### App Architecture Evaluation
 RubyCritic says that my Rails app is made mostly of simple files that don't churn often. The outlier dots you see are the `seeds.rb`, `schema.rb`, and `routes.rb`.
-![Alt text](/app/assets/images/screenshots/rubycritic.png?raw=true "RubyCritic stats")
+![Alt text](/screenshots/rubycritic.png?raw=true "RubyCritic stats")
 
 All of the other dots are in the lower left quadrant, i.e. the [healthy closure region](https://github.com/chad/turbulence#hopefully-meaningful-metrics). I attribute that to single-purpose objects. One of my favorites is the `CardFactory`, which is responsible for generating tarot cards for the readings so that the cards can be either right-side up, or upside down. In tarot, a single card can mean different things depending on its orientation (here's that "upside down data" I was talking about), so I was really excited to implement that feature. So excited, in fact, that I wrote [a blog post about it](http://lortza.github.io/2018/02/26/card-factory.html).
 
