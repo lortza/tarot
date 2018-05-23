@@ -1,8 +1,8 @@
-# ModernMystic tarot
+# ModernMystic Tarot App
 
 * Ruby version 2.4.2p198
 * Rails version 5.1.4
-* Private Repo: https://bitbucket.org/annerichardson/tarot/
+* Codebase in Private Repo: https://bitbucket.org/annerichardson/tarot/
 * Production App: https://modernmystic.herokuapp.com/
 
 ## The Rails App
