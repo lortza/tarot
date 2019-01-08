@@ -2,7 +2,7 @@
 
 * Ruby version 2.4.2p198
 * Rails version 5.1.4
-* Codebase in Private Repo: https://bitbucket.org/annerichardson/tarot/
+* Codebase in Private Repo: https://github.com/lortza/tarot_private
 * Production App: https://modernmystic.herokuapp.com/
 
 ## The Rails App
