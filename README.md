@@ -1,5 +1,7 @@
 # ModernMystic Tarot App
 
+[![Build Status](https://travis-ci.com/lortza/tarot_private.svg?token=snxZev7ebxCx4YwBDanv&branch=master)](https://travis-ci.com/lortza/tarot_private)
+
 * Ruby version 2.4.2p198
 * Rails version 5.1.4
 * Codebase in Private Repo: https://github.com/lortza/tarot_private
